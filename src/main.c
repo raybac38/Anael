@@ -25,7 +25,6 @@
 ********************************************************************************************/
 
 #include "raylib.h"
-
 //------------------------------------------------------------------------------------
 // Program main entry point
 //------------------------------------------------------------------------------------
@@ -42,7 +41,7 @@ int main(void)
     //--------------------------------------------------------------------------------------
 
 	Camera3D camera = {0};
-	camera.position = (Vector3){0.0f, 10.0f, 10.0f};
+	camera.position = (Vector3){10.0f, 10.0f, 10.0f};
 	camera.target = (Vector3){0.0f, 0.0f, 0.0f};
 	camera.up = (Vector3){0.0f, 1.0f, 0.0f};
 
@@ -62,14 +61,23 @@ int main(void)
         // Draw
         //----------------------------------------------------------------------------------
         
-	    cubePosition = (Vector3){0, 0, (int)(cubePosition.z + 1) % 10};
-        SetTargetFPS(10);
+    
+
+	    SetTargetFPS(60);
 
 	ClearBackground(RAYWHITE);
 	BeginDrawing();
 	BeginMode3D(camera);
-		DrawCube(cubePosition, 1.0, 1.0, 1.0, RED);
-		DrawCubeWires(cubePosition, 1.0, 1.0, 1.0, BLACK);
+	int size = 3;
+	    for(int i = 0-size; i < size; i++)
+	    {
+		for(int k = 0-size; k < size; k++)
+		{
+			cubePosition = (Vector3){i,0,k};
+			DrawCube(cubePosition, 1.0, 1.0, 1.0, RED);
+			DrawCubeWires(cubePosition, 1.0, 1.0, 1.0, BLACK);
+		}
+	    }  
 
 	EndMode3D();
 	EndDrawing();
